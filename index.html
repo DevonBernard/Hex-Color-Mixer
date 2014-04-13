@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>Hex Color Mixer</title>
+		<script type="text/javascript" src="./hexMixer.js"></script>
+		<link rel="stylesheet" type="text/css" href="./main.css" />
+	</head>
+	<body>
+	
+		<div id="title" style="min-width:600px;">Hex Color Mixer</div>
+		<div class="container" style="margin: 0 auto 20px auto;">
+			
+			<input type="text" id="colorInput1" placeholder="#FFFFFF" style="margin: 0 150px 0 25px;">
+			<input type="text" id="colorInput2" placeholder="#000000" style="margin: 0 150px 0 0px;">
+			<input type="text" id="colorInputMixed" placeholder="#c4c4c4" disabled>
+		</div>
+		<div class="container">
+			<div id="colorVat1" class="colorVat"></div>
+			<div class="vatText">+</div>
+			<div id="colorVat2" class="colorVat"></div>
+			<div class="vatText">=</div>
+			<div id="colorVatMixed" class="colorVat"></div>
+			<br>
+			<div class="vatText" style="font-size:25px;margin: 40px 20px 20px 20px;">Color 1 <input id="colorPercent" type="range" min="0" max="100" value="50" step="1" /> Color 2</div>
+		</div>
+		<div id="title" style="min-width:800px;font-size:25px;">Devon Bernard (2014)</div>
+		<script>		
+			var color1 = document.getElementById("colorInput1");
+			var color2 = document.getElementById("colorInput2");
+			var colorPercent = document.getElementById("colorPercent");
+			color1.onchange = function() {
+				var color1 =  document.getElementById("colorInput1").value;
+				var color2 =  document.getElementById("colorInput2").value;
+				var colorPercent =  100-document.getElementById("colorPercent").value;
+				
+				document.getElementById("colorVat1").style.backgroundColor = color1;
+				var mixed =  HexMixer(color1, color2, colorPercent);
+				document.getElementById('colorVatMixed').style.backgroundColor = mixed;
+				document.getElementById('colorInputMixed').value = mixed;
+			}
+			color2.onchange = function() {
+				var color1 =  document.getElementById("colorInput1").value;
+				var color2 =  document.getElementById("colorInput2").value;
+				var colorPercent =  100-document.getElementById("colorPercent").value;
+				
+				document.getElementById("colorVat2").style.backgroundColor = color2;
+				var mixed =  HexMixer(color1, color2, colorPercent);
+				document.getElementById('colorVatMixed').style.backgroundColor = mixed;
+				document.getElementById('colorInputMixed').value = mixed;
+			}
+			colorPercent.onchange = function() {
+				var color1 =  document.getElementById("colorInput1").value;
+				var color2 =  document.getElementById("colorInput2").value;
+				var colorPercent =  100-document.getElementById("colorPercent").value;
+				var mixed =  HexMixer(color1, color2, colorPercent);
+				document.getElementById('colorVatMixed').style.backgroundColor = mixed;
+				document.getElementById('colorInputMixed').value = mixed;
+			}
+		</script>
+	</body>
+</html>
